@@ -1,0 +1,60 @@
+//import processing.pdf.*;
+
+//scrolling text
+String[] uplift = {
+  "Someone is happy to see you",
+  "No one else in the world is like you",
+  "Your beautiful"
+};
+
+//question, with the above string. When I run the program it plays in the order of
+//line 2, then line 3, then line 1. Why doesn't it play starting from line 1?
+
+PFont l;
+PFont f; 
+float x; 
+int index = 0;
+
+void setup(){
+  size(450,600);
+  //size(450,600,PDF,"Week8.pdf");
+  l = createFont("TimesNewRoman", 24);
+  //font below is the scrolling text 
+  f = createFont("ComicSans",20);
+}
+
+void draw(){
+  background(0,191,255);
+  liftyourday();
+  upliftingtext();
+  sun();
+}
+
+void liftyourday(){
+  textFont(l,24);
+  textAlign(RIGHT);
+  fill(0);
+  text("Heres something to brighten your day",width/1.1,25);
+}
+
+void upliftingtext(){
+  textFont(f,20);
+  
+  text(uplift[index],x,height-20);
+  //this affects the text's speed
+  x = x-2.25;
+  
+  float w = textWidth(uplift[index]);
+  if(x < -w){
+    x = width;
+    index = (index+1)%uplift.length;
+  }
+}
+
+void sun(){
+  fill(255,255,0);
+  ellipse(450,600,450,450);
+  
+  //println("Finished.");
+  //exit();
+}
